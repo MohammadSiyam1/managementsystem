@@ -19,7 +19,7 @@ def allowed_users(allowed_roles=[]):
             if group in allowed_roles:
                 return view_func(request,*args, **kwargs)
             else:
-                return HttpResponse('you are not authorized')
+                return HttpResponse('404 page not found')
         return wrapper_func
     return decorator
 
@@ -32,6 +32,9 @@ def admin_only(view_func):
 
         if group=='customer':
             return redirect('userprofile')
+        if group=='seller':
+            return redirect('seller')
+        
         if group == 'admin':
             return view_func(request,*args, **kwargs)
     return wrapper_function

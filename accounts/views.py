@@ -148,3 +148,7 @@ def logout_user(request):
     logout(request)
     return redirect('login')
 
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['admin','seller'])
+def seller(request):
+    return render(request,'seller.html')
